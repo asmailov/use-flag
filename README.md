@@ -1,6 +1,6 @@
 # use-flag
 
-Utility React hook
+Utility react hook to simplify use cases when a 'flag' is needed.
 
 ## Installation
 
@@ -39,3 +39,16 @@ export function Component() {
   );
 }
 ```
+
+## Motivation
+
+There are many cases when a simple 'flag' value with toggle functionality is needed.
+To achieve this with default react we could write.
+
+```
+const [isExpanded, setIsExpanded] = useState(false);
+
+return <button type="button" onClick={() => setIsExpanded(value => !value)} />;
+```
+
+After writing the same code many times I've decided to write a generic solution for this problem.
