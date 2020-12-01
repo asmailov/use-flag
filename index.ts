@@ -27,4 +27,7 @@ const createUseFlag = (useState: UseState) =>
     };
   };
 
-export const useFlag = createUseFlag(useReactState);
+const useFlag = createUseFlag(useReactState);
+
+export { useFlag };
+export default useFlag;
