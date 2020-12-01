@@ -1,4 +1,4 @@
-const createUseFlag = require("../dist/createUseFlag").createUseFlag;
+import { createUseFlag } from "../createUseFlag";
 
 describe("useFlag", () => {
   it("updates value to 'true' when switching 'on'", () => {
@@ -37,9 +37,9 @@ describe("useFlag", () => {
   });
 });
 
-function createMockUseFlag(name, initial) {
-  let state = undefined;
-  const setState = (update) => {
+function createMockUseFlag<T extends string>(name: T, initial: boolean) {
+  let state: any = undefined;
+  const setState = (update: any) => {
     if (typeof update === "function") {
       state = update(state);
     } else {
@@ -55,7 +55,7 @@ function createMockUseFlag(name, initial) {
 
     return [state, setState];
   });
-  const useFlag = createUseFlag(mockUseState);
+  const useFlag = createUseFlag(mockUseState as any);
 
   return () => useFlag(name, initial);
 }
