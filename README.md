@@ -1,6 +1,6 @@
 # use-flag
 
-Utility react hook to simplify use cases when a 'flag' is needed.
+Utility react hook to simplify use cases when a 'flag' value and it's controls are needed.
 
 ## Installation
 
