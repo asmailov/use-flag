@@ -8,6 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Aleksandr Šmailov",
+  "repository": "https://github.com/asmailov/use-flag",
   "license": "ISC",
   "devDependencies": {
     "@types/react": "^17.0.0",
