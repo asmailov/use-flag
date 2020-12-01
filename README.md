@@ -15,7 +15,9 @@ Utility React hook
 ## Import
 
 `import useFlag from "use-flag";`
+
 or
+
 `import { useFlag } from "use-flag";`
 
 ## Usage:
