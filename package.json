@@ -10,6 +10,11 @@
   "author": "Aleksandr Šmailov",
   "repository": "https://github.com/asmailov/use-flag",
   "license": "ISC",
+  "keywords": [
+    "react",
+    "hooks",
+    "flag"
+  ],
   "devDependencies": {
     "@types/jest": "^26.0.15",
     "@types/react": "^17.0.0",
