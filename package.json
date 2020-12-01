@@ -12,8 +12,11 @@
   "license": "ISC",
   "keywords": [
     "react",
+    "hook",
     "hooks",
-    "flag"
+    "flag",
+    "flags",
+    "utility"
   ],
   "devDependencies": {
     "@types/jest": "^26.0.15",
