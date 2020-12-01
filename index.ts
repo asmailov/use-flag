@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState as useReactState } from "react";
 
-type UseState = typeof useState;
+type UseState = typeof useReactState;
 
-export const createUseFlag = (useState: UseState) =>
+const createUseFlag = (useState: UseState) =>
   function useFlag<Name extends string>(name: Name, initial: boolean) {
     const [flag, setFlag] = useState<boolean>(initial);
 
@@ -27,4 +27,4 @@ export const createUseFlag = (useState: UseState) =>
     };
   };
 
-export const useFlag = createUseFlag(useState);
+export const useFlag = createUseFlag(useReactState);
