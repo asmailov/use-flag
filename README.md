@@ -1,8 +1,8 @@
-[![codecov](https://codecov.io/gh/asmailov/use-flag/branch/main/graph/badge.svg?token=MX28F7RNML)](https://codecov.io/gh/asmailov/use-flag)
-
 # use-flag
 
 Utility react hook to simplify use cases when a 'flag' value and it's controls are needed.
+
+[![codecov](https://codecov.io/gh/asmailov/use-flag/branch/main/graph/badge.svg?token=MX28F7RNML)](https://codecov.io/gh/asmailov/use-flag)
 
 ## Installation
 
