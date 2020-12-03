@@ -24,22 +24,37 @@ or
 
 ## Usage:
 
-```
+```javascript
 import React from "react";
 import useFlag from "use-flag";
 
 export function Component() {
-  const { isExpanded, on, off, toggle } = useFlag("isExpanded", false);
+  const [isExpanded, { on, off, toggle }] = useFlag(false);
+  // or
+  // const { isExpanded, on, off, toggle } = useFlag("isExpanded", false);
 
   return (
     <div>
-      <div>{isExpanded ? 'Is expanded' : 'Is collapsed'}</div>
-      <button type="button" onClick={on}>On</button>
-      <button type="button" onClick={off}>Off</button>
-      <button type="button" onClick={toggle}>Toggle</button>
+      <div>{isExpanded ? "Is expanded" : "Is collapsed"}</div>
+      <button type="button" onClick={on}>
+        On
+      </button>
+      <button type="button" onClick={off}>
+        Off
+      </button>
+      <button type="button" onClick={toggle}>
+        Toggle
+      </button>
     </div>
   );
 }
+```
+
+```javascript
+// initial value can be ommited and will default to 'false'
+useFlag("isExpanded");
+// or
+useFlag();
 ```
 
 ## Motivation
