@@ -12,8 +12,8 @@ describe("useFlag", () => {
       [undefined, false],
       [false, false],
       [true, true]
-    ])(`when provided with '%p' sets initial value to '%p'`, (intial, expected) => {
-      const { flagName } = useFlag('flagName', intial);
+    ])(`when provided with '%p' sets initial value to '%p'`, (initial, expected) => {
+      const { flagName } = useFlag('flagName', initial);
       expect(flagName).toBe(expected);
     });
 
@@ -22,14 +22,14 @@ describe("useFlag", () => {
       expect(flagName).toBe(false);
 
       on();
-      const { flagName: nextValue } = useFlag('flagName');
+      const { flagName: nextValue } = useFlag('flagName', false);
       expect(nextValue).toBe(true);
     });
 
     it("updates value to 'false' when switching 'off'", () => {
       const { flagName, off } = useFlag('flagName', true);
       expect(flagName).toBe(true);
-  
+
       off();
       const { flagName: nextValue } = useFlag('flagName', true);
       expect(nextValue).toBe(false);
@@ -38,77 +38,55 @@ describe("useFlag", () => {
     it("switches on/off values when 'toggling' value", () => {
       const { flagName, toggle } = useFlag('flagName', false);
       expect(flagName).toBe(false);
-  
+
       toggle();
       expect(useFlag('flagName', false).flagName).toBe(true);
-  
+
       toggle();
       expect(useFlag('flagName', false).flagName).toBe(false);
     });
   })
 
-  // it("updates value to 'true' when switching 'on'", () => {
-  //   const useFlag = createMockUseFlag("value", false);
+  describe('unnamed', () => {
+    test.each([
+      [undefined, false],
+      [false, false],
+      [true, true]
+    ])(`when provided with '%p' sets initial value to '%p'`, (initial, expected) => {
+      const [flagName] = useFlag(initial);
+      expect(flagName).toBe(expected);
+    });
 
-  //   const { value, on } = useFlag();
-  //   expect(value).toBe(false);
+    it("updates value to 'true' when switching 'on'", () => {
+      const [flagName, { on }] = useFlag(false);
+      expect(flagName).toBe(false);
 
-  //   on();
-  //   const { value: nextValue } = useFlag();
-  //   expect(nextValue).toBe(true);
-  // });
+      on();
+      const [nextValue] = useFlag(false);
+      expect(nextValue).toBe(true);
+    });
 
-  // it("updates value to 'false' when switching 'off'", () => {
-  //   const useFlag = createMockUseFlag("value", true);
+    it("updates value to 'false' when switching 'off'", () => {
+      const [flagName, {off }] = useFlag(true);
+      expect(flagName).toBe(true);
 
-  //   const { value, off } = useFlag();
-  //   expect(value).toBe(true);
+      off();
+      const [nextValue] = useFlag(true);
+      expect(nextValue).toBe(false);
+    });
 
-  //   off();
-  //   const { value: nextValue } = useFlag();
-  //   expect(nextValue).toBe(false);
-  // });
+    it("switches on/off values when 'toggling' value", () => {
+      const [flagName, {toggle }] = useFlag(false);
+      expect(flagName).toBe(false);
 
-  // it("switches on/off values when 'toggling' value", () => {
-  //   const useFlag = createMockUseFlag("value", false);
+      toggle();
+      expect(useFlag(false)[0]).toBe(true);
 
-  //   const { value, toggle } = useFlag();
-  //   expect(value).toBe(false);
-
-  //   toggle();
-  //   expect(useFlag().value).toBe(true);
-
-  //   toggle();
-  //   expect(useFlag().value).toBe(false);
-  // });
+      toggle();
+      expect(useFlag(false)[0]).toBe(false);
+    });
+  })
 });
-
-function testOverload() {
-
-}
-
-function createMockUseFlag<T extends string>(name: T, initial: boolean) {
-  let state: any = undefined;
-  const setState = (update: any) => {
-    if (typeof update === "function") {
-      state = update(state);
-    } else {
-      state = update;
-    }
-  };
-  let firstTime = true;
-  const mockUseState = jest.fn((initial) => {
-    if (firstTime) {
-      state = initial;
-      firstTime = false;
-    }
-
-    return [state, setState];
-  });
-  const useFlag = createUseFlag(mockUseState as any);
-
-  return () => useFlag(name, initial);
-}
 
 function getUseMockState(): typeof useState {
   let state: any = undefined;
